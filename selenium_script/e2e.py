@@ -1,8 +1,7 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 from time import sleep
-from page_objects import weather
-from page_objects import click_buy_sunscreens_button, select_spf50, select_spf30, click_buy_moisturizers_button, select_aloe, select_almond
+from page_objects import click_buy_sunscreens_button, select_spf50, select_spf30, click_buy_moisturizers_button, select_aloe, select_almond, weather
 from checkout_payment import goto_cart, click_pay_with_card, fill_cart, pay
 
 def add_sunscreens():
@@ -37,7 +36,7 @@ def checkout():
     print("payment", message)
 
 if __name__ == "__main__":
-    browser = webdriver.Chrome(ChromeDriverManager().install())
+    browser = webdriver.Firefox(executable_path=GeckoDriverManager().install())
     browser.get("https://weathershopper.pythonanywhere.com/")
     if browser.title == "Current Temperature":
         print("Owsome: Landed over right page")
