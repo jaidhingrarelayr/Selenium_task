@@ -1,6 +1,5 @@
 from time import sleep
 
-
 def goto_cart(browser):
     
     browser.find_element_by_xpath("//button[contains(text(),'Cart -')]").click()
@@ -12,11 +11,19 @@ def click_pay_with_card(browser):
 def fill_cart(browser):
     
     browser.switch_to.frame("stripe_checkout_app")
-    browser.find_element_by_xpath("//input[@type = 'email']").send_keys("sample@gmail.com")
+    browser.find_element_by_xpath("//input[@type = 'email']").send_keys("flink@gmail.com")
     sleep(2)
-    browser.find_element_by_xpath("//input[@placeholder = 'card_number']").send_keys('4242 4242 4242 4242')
+    browser.find_element_by_xpath("//input[@placeholder = 'Card number']").send_keys("4242")
     sleep(2)
-    browser.find_element_by_xpath("//input[@placeholder = 'MM / YY']").send_keys('12 / 23')
+    browser.find_element_by_xpath("//input[@placeholder = 'Card number']").send_keys("4242")
+    sleep(2)
+    browser.find_element_by_xpath("//input[@placeholder = 'Card number']").send_keys("4242")
+    sleep(2)
+    browser.find_element_by_xpath("//input[@placeholder = 'Card number']").send_keys("4242")
+    sleep(2)
+    browser.find_element_by_xpath("//input[@placeholder = 'MM / YY']").send_keys('12 / ')
+    sleep(2)
+    browser.find_element_by_xpath("//input[@placeholder = 'MM / YY']").send_keys('23')
     sleep(2)
     browser.find_element_by_xpath("//input[@placeholder = 'CVC']").send_keys('679')
     sleep(2)
@@ -25,8 +32,7 @@ def fill_cart(browser):
 
 def pay(browser):
     
-    browser.find_element_by_xpath("//button[@type='submit' and \
-        @class='Button-animationWrapper-child--primary Button']").click()
+    browser.find_element_by_xpath("//button[@type = 'submit']").click()
     browser.switch_to_default_content()
     sleep(5)
     return "success" if browser.title == "Confirmation" else "failed"
